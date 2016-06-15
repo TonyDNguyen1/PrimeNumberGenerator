@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,9 +34,10 @@ namespace UnitTest
         };
 
         [TestMethod]
-        public void TestSimplePrimeGenerator_GeneratePrimeAsync_()
+        public void TestBothGenerators_GeneratePrime()
         {
             var simplePrimeGenerator = new SimplePrimeGenerator();
+            var optimizedGenerator = new OptimizedGenerator();
 
             //Create a cancellation token for stopping the prime number generation task.
             var tokenSource = new CancellationTokenSource();
@@ -44,25 +46,85 @@ namespace UnitTest
 
             //Test for some prime numbers and compare these with a know prime number list.
             var limit = (uint) PRIME_NUMBERS[PRIME_NUMBERS.Length-1];
-            var task = Task.Factory.StartNew(() => simplePrimeGenerator.GeneratePrimeAsync(limit, cancellationToken), cancellationToken);
-            tasks.Add(task);
+            var task1 = Task.Factory.StartNew(() => simplePrimeGenerator.GeneratePrime(limit, cancellationToken), cancellationToken);
+            var task2 = Task.Factory.StartNew(() => optimizedGenerator.GeneratePrime(limit, cancellationToken), cancellationToken);
+            tasks.Add(task1);
+            tasks.Add(task2);
 
-            //wait until the task is completed
+            //wait until all tasks are completed
             Task.WhenAll(tasks.ToArray());
+            tokenSource.Dispose();
 
             //check if the task is not null
-            Assert.IsTrue(task != null);
+            Assert.IsTrue(task1 != null);
+            Assert.IsTrue(task2 != null);
 
-            var results = task.Unwrap().Result;
+            var results1 = task1.Result.ToArray();
+            var results2 = task2.Result.ToArray();
 
             //check if the number of prime numbers are the same.
-            Assert.IsTrue(results.Count == PRIME_NUMBERS.Length);
+            Assert.IsTrue(results1.Length == PRIME_NUMBERS.Length);
+            Assert.IsTrue(results2.Length == PRIME_NUMBERS.Length);
 
-            //check if every prime number is the same.
-            int i = 0;
-            foreach (var prime in results)
+            //check if every prime number are the same.
+            for (int i = 0; i< PRIME_NUMBERS.Length; ++i)
             {
-                Assert.IsTrue(prime == PRIME_NUMBERS[i++]);
+                Assert.IsTrue(results1[i] == PRIME_NUMBERS[i]);
+                Assert.IsTrue(results2[i] == PRIME_NUMBERS[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestOptimizedGenerator_GeneratePrime()
+        {
+            var optimizedGenerator = new OptimizedGenerator();
+
+            //Create a cancellation token for stopping the prime number generation task.
+            var tokenSource = new CancellationTokenSource();
+            CancellationToken cancellationToken = tokenSource.Token;
+
+            var limit = (uint)PRIME_NUMBERS[PRIME_NUMBERS.Length - 1];
+            var resultList = optimizedGenerator.GeneratePrime(limit, cancellationToken);
+            tokenSource.Dispose();
+
+            Assert.IsTrue(resultList != null);
+
+            var results = resultList.ToArray();
+
+            //check if the number of prime numbers are the same.
+            Assert.IsTrue(results.Length == PRIME_NUMBERS.Length);
+
+            //check if every prime number are the same.
+            for (int i = 0; i < PRIME_NUMBERS.Length; ++i)
+            {
+                Assert.IsTrue(results[i] == PRIME_NUMBERS[i]);
+            }
+        }
+
+        [TestMethod]
+        public void TestSimpleGenerator_GeneratePrime()
+        {
+            var optimizedGenerator = new SimplePrimeGenerator();
+
+            //Create a cancellation token for stopping the prime number generation task.
+            var tokenSource = new CancellationTokenSource();
+            CancellationToken cancellationToken = tokenSource.Token;
+
+            var limit = (uint)PRIME_NUMBERS[PRIME_NUMBERS.Length - 1];
+            var resultList = optimizedGenerator.GeneratePrime(limit, cancellationToken);
+            tokenSource.Dispose();
+
+            Assert.IsTrue(resultList != null);
+
+            var results = resultList.ToArray();
+
+            //check if the number of prime numbers are the same.
+            Assert.IsTrue(results.Length == PRIME_NUMBERS.Length);
+
+            //check if every prime number are the same.
+            for (int i = 0; i < PRIME_NUMBERS.Length; ++i)
+            {
+                Assert.IsTrue(results[i] == PRIME_NUMBERS[i]);
             }
         }
     }

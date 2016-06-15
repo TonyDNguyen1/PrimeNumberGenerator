@@ -13,17 +13,16 @@ namespace CSharpPrimeGenerator
     {
         static void Main(string[] args)
         {
-            var simplePrimeGenerator = new SimplePrimeGenerator();
+            //var primeGenerator = new SimplePrimeGenerator();
+            var primeGenerator = new OptimizedGenerator();
 
             //Create a cancellation token for stopping the prime number generation task.
             var tokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = tokenSource.Token;
-            var tasks = new ConcurrentBag<Task>();
 
             //List<T> has a max capacity at uint.MaxValue/2.  Pass it as the limit to be calculated if there is no time limit.
             var limit = uint.MaxValue / 2;
-            var task = Task.Factory.StartNew(() => simplePrimeGenerator.GeneratePrimeAsync(limit,cancellationToken), cancellationToken);
-            tasks.Add(task);
+            var task = Task.Factory.StartNew(() => primeGenerator.GeneratePrime(limit,cancellationToken), cancellationToken);
 
             //Get the process/program start time.
             //The start time can be a couple of seconds if this is a cold start.
@@ -41,7 +40,7 @@ namespace CSharpPrimeGenerator
                 var nextStop = secondsRan + 1d;
                 int waitTime = (int)((nextStop* 1000d) - duration.TotalMilliseconds);
                 Thread.Sleep(waitTime);
-                System.Console.WriteLine($"Time(sec): {((int)nextStop).ToString("D2")} ----- Max Prime #: {simplePrimeGenerator.GetMaxPrime().ToString("N0")}");
+                System.Console.WriteLine($"Time(sec): {((int)nextStop).ToString("D2")} ----- Max Prime #: {primeGenerator.GetMaxPrime().ToString("N0")}");
                 duration = DateTime.Now - startTime;
                 secondsRan = Math.Round(duration.TotalMilliseconds / 1000d);
             }
@@ -51,7 +50,20 @@ namespace CSharpPrimeGenerator
 
             try
             {
-                Task.WhenAll(tasks.ToArray());
+                Task.WhenAll(task);
+
+                if (task != null)
+                {
+                    var primeList = task.Result;
+                    //Please note, some additional prime numbers are calculated after 60 seconds before the task was cancelled.                    
+                    System.Console.WriteLine($"Number of primes: {primeList.Count().ToString("N0")}");
+                    System.Console.WriteLine($"Last prime found: {primeGenerator.GetMaxPrime().ToString("N0")}");
+                    System.Console.WriteLine($"Elapsed time (milliseconds): {primeGenerator.ElapsedTime.ToString("N0")}");
+                    System.Console.WriteLine($"GC Count: {primeGenerator.GCCount.ToString("N0")}");
+                }
+                System.Console.WriteLine("Hit a key to exit.");
+                System.Console.ReadKey(true);
+
             }
             catch (AggregateException e)
             {
@@ -71,15 +83,6 @@ namespace CSharpPrimeGenerator
             {
                 tokenSource.Dispose();
             }
-
-            if (task != null)
-            {
-                var primeList = task.Unwrap().Result;
-                //Please note, some additional prime numbers are calculated after 60 seconds before the task was cancelled.
-                System.Console.WriteLine($"Number of primes: {primeList.Count().ToString("N0")}");
-            }
-            System.Console.WriteLine("Hit a key to exit.");
-            System.Console.ReadKey(true);
         }
     }
 }

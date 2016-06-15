@@ -1,5 +1,0 @@
-C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\bin\Debug\CSharpPrimeGenerator.exe.config
-C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\bin\Debug\CSharpPrimeGenerator.exe
-C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\bin\Debug\CSharpPrimeGenerator.pdb
-C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\obj\Debug\CSharpPrimeGenerator.exe
-C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\obj\Debug\CSharpPrimeGenerator.pdb

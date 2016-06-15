@@ -1,4 +1,5 @@
 # PrimeNumberGenerator
+By Tony Nguyen 6/15/2016
 
 Requirements:
 1.  Find a max prime number and display it with a timer progress.

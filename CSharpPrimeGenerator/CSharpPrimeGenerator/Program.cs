@@ -13,44 +13,45 @@ namespace CSharpPrimeGenerator
     {
         static void Main(string[] args)
         {
-            //var primeGenerator = new SimplePrimeGenerator();
-            var primeGenerator = new OptimizedGenerator();
-
             //Create a cancellation token for stopping the prime number generation task.
             var tokenSource = new CancellationTokenSource();
             CancellationToken cancellationToken = tokenSource.Token;
 
+
+            //var primeGenerator = new SimplePrimeGenerator();
+            var primeGenerator = new OptimizedGenerator();
+
             //List<T> has a max capacity at uint.MaxValue/2.  Pass it as the limit to be calculated if there is no time limit.
             var limit = uint.MaxValue / 2;
-            var task = Task.Factory.StartNew(() => primeGenerator.GeneratePrime(limit,cancellationToken), cancellationToken);
+            var task = Task.Factory.StartNew(() => primeGenerator.GeneratePrime(limit, cancellationToken), cancellationToken);
 
             //Get the process/program start time.
-            //The start time can be a couple of seconds if this is a cold start.
-            //The JIL can take a few seconds to create the native code on the first run.
+            //The start time can be a significant delay if this is a cold start (run for the first time).
+            //The JIL creates the native code on the first run.
             //Run this test twice to get a better results, or use NGen to precompile the .NET assemblies to native code.
             //Use RyuJIT instead of JIT.  RyuJIT is faster than JIT. https://gist.github.com/richlander/d29dc4fe4e8032de5c92
 
             //This loop will output a counter number and a max prime number for every second.
-            //Do not output too many statements as these can affect the memory allocations and the CPU.
+            //Do not output too many statements as these can affect the performance.
             var startTime = DateTime.Now; //Process.GetCurrentProcess().StartTime;
-            TimeSpan duration = DateTime.Now-startTime;
-            var secondsRan = Math.Round(duration.TotalMilliseconds / 1000d);
-            while (secondsRan < 60d) //exit the loop if the program has ran for more than 60 seconds.
-            {                
-                var nextStop = secondsRan + 1d;
-                int waitTime = (int)((nextStop* 1000d) - duration.TotalMilliseconds);
+            TimeSpan duration = DateTime.Now - startTime;
+            var numberOfSecondsRan = Math.Round(duration.TotalMilliseconds / 1000d);
+            while (numberOfSecondsRan < 60d) //exit the loop if the program has ran for more than 60 seconds.
+            {
+                var nextStop = numberOfSecondsRan + 1d;
+                int waitTime = (int)((nextStop * 1000d) - duration.TotalMilliseconds);
                 Thread.Sleep(waitTime);
                 System.Console.WriteLine($"Time(sec): {((int)nextStop).ToString("D2")} ----- Max Prime #: {primeGenerator.GetMaxPrime().ToString("N0")}");
                 duration = DateTime.Now - startTime;
-                secondsRan = Math.Round(duration.TotalMilliseconds / 1000d);
+                numberOfSecondsRan = Math.Round(duration.TotalMilliseconds / 1000d);
             }
 
             //Stop generating the prime numbers
             tokenSource.Cancel();
-
             try
             {
-                Task.WhenAll(task);
+
+                Task.WhenAll(task);  //when the task is completed, its continuation is below.
 
                 if (task != null)
                 {

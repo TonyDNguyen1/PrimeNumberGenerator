@@ -17,29 +17,25 @@ Tool:
 Visual Studio 2015 C# .NET
 
 Approach:
--Use Sieve of Eratosthenes to generate the prime numbers as it can be calculated using delta n.
--Calculate the first 4096 prime numbers.
--If this runs under 0.3 second then find the next 8192;
--If this runs between 0.3-0.5 second then find the next 4096;
--If this runs more than 0.5 second then find the next 2048.
--Continue to double or half the delta n so that each batch runs about 0.5 second.
+-Use primality test as it does not have the overhead on running like a batch.  The other 2 algorithms are batch like and cannot be easily cancelled when 60 sec is up.
 
 Pseudocode
-Given a max prime number n > 1.
-Create a bool/bit array A of n/2 size.  Leave the initial values default to false.
-for i=1,2,3,..< ((square root of n)-1)/2:
-	if A[i] is false:
-		v = i*2+1; v has only odds consisting of 3, 5, 7,..<(square root of n)
-		for j = v*v, v*v + v, v*v + 2v, v*v + 3v,..<n:
-			A[(j-1)/2] = true
-
-Prime numbers: 2 and all (i*2+1) such that A[i] is false.
-To add a delta n, we need to save the max i and max j.  Run the j loop for the delta n, and run the i loop for the delta sqrt n.
+Given a number max > 1.
+Array A has the found prime numbers starting with {3,5}.
+for n=7,9,11,...max (increment by 2 skipping evens)
+	for i=0,1,2,..A.Length
+		if A[i] <= square root of n
+			if n % A[i] == 0 (n is divisible by A[i])
+				n is not a prime
+				break inner loop and test next (n+2)
+		else
+			n is prime;
+			Append n to A[];
+			break inner loop and test next (n+2)
 
 C# limitation:
--Use value type Uint for representing a prime number; UInt32.MaxValue: 4,294,967,295
--Use dyanamic arrary List<bool> for storing a list of primes.  The max list size is UInt32.MaxValue/2, 2GB.  The list capacity is doubled when it needs to increase.  There is an overhead on copying the old list to the new list.
--Use Dictionary<i,j> for caching the last j < n.
+-Use a value type uint for representing a prime number; UInt32.MaxValue: 4,294,967,295
+-Use a dynamic arrary List<uint> for storing a list of primes.  The max list size is UInt32.MaxValue/2, 2GB.  The list capacity is doubled when it needs to increase.  There is an overhead on copying the old list to the new list.
 
 Unit test:
-Use the primality test simple method to validate the output prime numbers.
+Use the primality test with known prime numbers to validate the output.

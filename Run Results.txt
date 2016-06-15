@@ -1,0 +1,140 @@
+Tony Nguyen 6/15/2016
+
+Running from the OptimizedGenerator version:
+
+C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\bin\Release>CSharpPrimeGenerator.exe
+Time(sec): 01 ----- Max Prime #: 4,654,217
+Time(sec): 02 ----- Max Prime #: 8,127,719
+Time(sec): 03 ----- Max Prime #: 11,535,697
+Time(sec): 04 ----- Max Prime #: 14,681,519
+Time(sec): 05 ----- Max Prime #: 17,499,649
+Time(sec): 06 ----- Max Prime #: 20,252,231
+Time(sec): 07 ----- Max Prime #: 22,873,783
+Time(sec): 08 ----- Max Prime #: 25,429,753
+Time(sec): 09 ----- Max Prime #: 27,789,133
+Time(sec): 10 ----- Max Prime #: 30,148,501
+Time(sec): 11 ----- Max Prime #: 32,442,331
+Time(sec): 12 ----- Max Prime #: 34,605,073
+Time(sec): 13 ----- Max Prime #: 36,833,371
+Time(sec): 14 ----- Max Prime #: 38,996,129
+Time(sec): 15 ----- Max Prime #: 41,027,743
+Time(sec): 16 ----- Max Prime #: 43,059,481
+Time(sec): 17 ----- Max Prime #: 45,156,697
+Time(sec): 18 ----- Max Prime #: 47,188,369
+Time(sec): 19 ----- Max Prime #: 49,154,513
+Time(sec): 20 ----- Max Prime #: 51,186,199
+Time(sec): 21 ----- Max Prime #: 53,086,799
+Time(sec): 22 ----- Max Prime #: 54,987,403
+Time(sec): 23 ----- Max Prime #: 56,888,003
+Time(sec): 24 ----- Max Prime #: 58,788,581
+Time(sec): 25 ----- Max Prime #: 60,623,669
+Time(sec): 26 ----- Max Prime #: 62,524,271
+Time(sec): 27 ----- Max Prime #: 64,359,319
+Time(sec): 28 ----- Max Prime #: 66,194,363
+Time(sec): 29 ----- Max Prime #: 68,029,463
+Time(sec): 30 ----- Max Prime #: 69,864,521
+Time(sec): 31 ----- Max Prime #: 71,568,517
+Time(sec): 32 ----- Max Prime #: 73,338,037
+Time(sec): 33 ----- Max Prime #: 75,107,569
+Time(sec): 34 ----- Max Prime #: 76,877,089
+Time(sec): 35 ----- Max Prime #: 78,581,077
+Time(sec): 36 ----- Max Prime #: 80,285,059
+Time(sec): 37 ----- Max Prime #: 81,989,059
+Time(sec): 38 ----- Max Prime #: 83,627,477
+Time(sec): 39 ----- Max Prime #: 85,265,933
+Time(sec): 40 ----- Max Prime #: 86,904,409
+Time(sec): 41 ----- Max Prime #: 88,608,391
+Time(sec): 42 ----- Max Prime #: 90,181,309
+Time(sec): 43 ----- Max Prime #: 91,819,759
+Time(sec): 44 ----- Max Prime #: 93,458,201
+Time(sec): 45 ----- Max Prime #: 95,031,091
+Time(sec): 46 ----- Max Prime #: 96,669,569
+Time(sec): 47 ----- Max Prime #: 98,242,481
+Time(sec): 48 ----- Max Prime #: 99,749,849
+Time(sec): 49 ----- Max Prime #: 101,388,293
+Time(sec): 50 ----- Max Prime #: 102,895,633
+Time(sec): 51 ----- Max Prime #: 104,468,563
+Time(sec): 52 ----- Max Prime #: 105,975,959
+Time(sec): 53 ----- Max Prime #: 107,483,339
+Time(sec): 54 ----- Max Prime #: 108,990,701
+Time(sec): 55 ----- Max Prime #: 110,498,083
+Time(sec): 56 ----- Max Prime #: 112,005,451
+Time(sec): 57 ----- Max Prime #: 113,512,837
+Time(sec): 58 ----- Max Prime #: 115,020,193
+Time(sec): 59 ----- Max Prime #: 116,527,583
+Time(sec): 60 ----- Max Prime #: 118,034,951
+Number of primes: 6,736,118
+Last prime found: 118,034,951
+Elapsed time (milliseconds): 59,983
+GC Count: 33
+Hit a key to exit.
+
+Running from the SimplePrimeGenerator version:
+
+C:\GitRepositories\PrimeNumberGenerator\CSharpPrimeGenerator\CSharpPrimeGenerator\bin\Release>CSharpPrimeGenerator.exe
+Time(sec): 01 ----- Max Prime #: 5,743,417
+Time(sec): 02 ----- Max Prime #: 9,702,083
+Time(sec): 03 ----- Max Prime #: 13,078,363
+Time(sec): 04 ----- Max Prime #: 16,184,191
+Time(sec): 05 ----- Max Prime #: 19,143,181
+Time(sec): 06 ----- Max Prime #: 21,978,049
+Time(sec): 07 ----- Max Prime #: 24,703,171
+Time(sec): 08 ----- Max Prime #: 27,321,667
+Time(sec): 09 ----- Max Prime #: 29,837,231
+Time(sec): 10 ----- Max Prime #: 32,282,827
+Time(sec): 11 ----- Max Prime #: 34,646,879
+Time(sec): 12 ----- Max Prime #: 36,964,159
+Time(sec): 13 ----- Max Prime #: 39,240,667
+Time(sec): 14 ----- Max Prime #: 41,481,017
+Time(sec): 15 ----- Max Prime #: 43,673,603
+Time(sec): 16 ----- Max Prime #: 45,816,937
+Time(sec): 17 ----- Max Prime #: 47,916,767
+Time(sec): 18 ----- Max Prime #: 50,003,659
+Time(sec): 19 ----- Max Prime #: 52,057,469
+Time(sec): 20 ----- Max Prime #: 54,084,301
+Time(sec): 21 ----- Max Prime #: 56,088,311
+Time(sec): 22 ----- Max Prime #: 58,064,561
+Time(sec): 23 ----- Max Prime #: 59,995,807
+Time(sec): 24 ----- Max Prime #: 61,923,559
+Time(sec): 25 ----- Max Prime #: 63,802,909
+Time(sec): 26 ----- Max Prime #: 65,651,203
+Time(sec): 27 ----- Max Prime #: 67,499,557
+Time(sec): 28 ----- Max Prime #: 69,354,403
+Time(sec): 29 ----- Max Prime #: 71,177,731
+Time(sec): 30 ----- Max Prime #: 72,969,527
+Time(sec): 31 ----- Max Prime #: 74,743,601
+Time(sec): 32 ----- Max Prime #: 76,532,191
+Time(sec): 33 ----- Max Prime #: 78,303,083
+Time(sec): 34 ----- Max Prime #: 80,040,091
+Time(sec): 35 ----- Max Prime #: 81,750,233
+Time(sec): 36 ----- Max Prime #: 83,473,913
+Time(sec): 37 ----- Max Prime #: 85,198,567
+Time(sec): 38 ----- Max Prime #: 86,898,947
+Time(sec): 39 ----- Max Prime #: 88,573,091
+Time(sec): 40 ----- Max Prime #: 90,218,189
+Time(sec): 41 ----- Max Prime #: 91,890,511
+Time(sec): 42 ----- Max Prime #: 93,541,057
+Time(sec): 43 ----- Max Prime #: 95,177,077
+Time(sec): 44 ----- Max Prime #: 96,783,163
+Time(sec): 45 ----- Max Prime #: 98,364,281
+Time(sec): 46 ----- Max Prime #: 99,972,269
+Time(sec): 47 ----- Max Prime #: 101,555,599
+Time(sec): 48 ----- Max Prime #: 103,136,867
+Time(sec): 49 ----- Max Prime #: 104,711,753
+Time(sec): 50 ----- Max Prime #: 106,305,611
+Time(sec): 51 ----- Max Prime #: 107,861,849
+Time(sec): 52 ----- Max Prime #: 109,404,221
+Time(sec): 53 ----- Max Prime #: 110,950,429
+Time(sec): 54 ----- Max Prime #: 112,496,767
+Time(sec): 55 ----- Max Prime #: 114,043,471
+Time(sec): 56 ----- Max Prime #: 115,565,651
+Time(sec): 57 ----- Max Prime #: 117,081,299
+Time(sec): 58 ----- Max Prime #: 118,612,399
+Time(sec): 59 ----- Max Prime #: 120,133,763
+Time(sec): 60 ----- Max Prime #: 121,629,947
+Number of primes: 6,929,227
+Last prime found: 121,630,991
+Elapsed time (milliseconds): 59,999
+GC Count: 2
+Hit a key to exit.
+

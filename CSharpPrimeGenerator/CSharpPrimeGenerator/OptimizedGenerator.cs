@@ -151,7 +151,7 @@ namespace CSharpPrimeGenerator
 
                 //Run parrallel tasks to test for prime numbers
                 var newPrimes = (
-                    from prime in data //.AsParallel()
+                    from prime in data.AsParallel()
                     select isPrime(prime)) //returns prime for prime number and 0 for non-prime
                     .Where(i => i > 0) //filter out the 0's
                     .ToList<uint>(); //put the prime numbers in a list so that the list can be sorted
